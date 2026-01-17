@@ -11,7 +11,6 @@ class Route {
         $this->routes[$method][$route] = [
             'controller' => $controller,
             'action' => $action
-
         ];
     }
 
@@ -43,7 +42,7 @@ class Route {
             $controller->$action();
             exit;
         } else {
-            require_once '/../Views/errors/404.php'
+            require_once '/../Views/errors/404.php';
         }
     }
 
