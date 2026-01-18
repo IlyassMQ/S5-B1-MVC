@@ -16,7 +16,7 @@ class AdminController
             exit;
         }
 
-        require __DIR__ . '/../../Views/admin/admin.php';
+        require __DIR__ . '/../../Views/admin/dashboard.php';
 
     }
     
