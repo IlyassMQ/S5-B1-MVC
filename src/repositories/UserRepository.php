@@ -15,7 +15,7 @@ class UserRepository
     }
 
 
-    public function create(array $data)
+    public function create(array $data): int
     {
         $sql = "INSERT INTO users (name, email, password, role_id) VALUES (:name, :email, :password, :role_id)";
 
@@ -26,6 +26,7 @@ class UserRepository
             'password' => $data['password'],
             'role_id' => $data['role_id']
         ]);
+        return (int) $this->pdo->lastInsertId();
 
     }
     public function findByEmail(string $email)

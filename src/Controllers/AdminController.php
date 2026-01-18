@@ -12,7 +12,7 @@ class AdminController
             exit;
         }
          if ($_SESSION['user']['role'] !== 3) {
-            header('Location: /404');
+            require __DIR__ . '/../Views/errors/404.php';
             exit;
         }
 

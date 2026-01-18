@@ -14,10 +14,10 @@ class RecruiterController
         }
 
         if ($_SESSION['user']['role'] !== 2) {
-            header('Location: /403');
+            require __DIR__ . '/../Views/errors/404.php';
             exit;
         }
 
-        require __DIR__ . '/../../Views/recruiter/dashboard.php';
+        require __DIR__ . '/../Views/recruiter/dashboard.php';
     }
 }

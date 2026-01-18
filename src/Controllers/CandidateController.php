@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace App\Controllers;
 class CandidateController
 {
 
@@ -12,11 +12,11 @@ class CandidateController
         }
 
         if ($_SESSION['user']['role']!== 1){
-            header('Location: /404');
+            require __DIR__ . '/../Views/errors/404.php';
             exit;
         }
 
-        require __DIR__ . '/../../Views/candidate/dashboard.php';
+        require __DIR__ . '/../Views/candidate/dashboard.php';
 
     }
 

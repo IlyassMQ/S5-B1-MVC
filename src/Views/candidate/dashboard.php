@@ -8,7 +8,7 @@
 <body>
 
 <h1>Candidate Dashboard</h1>
-<a href="/logout">Logout</a>
+<a href="/S5-B1-MVC/public/logout">Logout</a>
 
 </body>
 </html>

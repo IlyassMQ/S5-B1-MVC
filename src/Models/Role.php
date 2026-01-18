@@ -18,7 +18,7 @@ class Role {
     }
 
     public function getName(){
-        return $this->id;
+        return $this->name;
     }
     public function setName(string $name){
         $this->name = $name;

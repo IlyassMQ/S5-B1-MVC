@@ -1,16 +1,19 @@
 <?php
 
 namespace App\Controllers;
-
+use App\Config\Database;
+use App\Repositories\UserRepository;
 use App\Services\AuthService;
 
 class AuthController
 {
     private AuthService $authService;
 
-    public function __construct(AuthService $authService)
+     public function __construct()
     {
-        $this->authService = $authService;
+        $pdo = (new Database())->connect();
+        $userRepo = new UserRepository($pdo);
+        $this->authService = new AuthService($userRepo);
     }
 
 
@@ -21,13 +24,13 @@ class AuthController
             $result = $this->authService->register($_POST);
 
             if ($result) {
-                header('Location: /login');
-                exit;
+                header('Location: /S5-B1-MVC/public/login');
+            exit;
             } else {
                 $error = "Registration failed. Please try again.";
             }
         }
-        require __DIR__ . '/../../Views/auth/register.php';
+        require __DIR__ . '/../Views/auth/register.php';
     }
 
 
@@ -54,20 +57,20 @@ class AuthController
                 ];
                 switch ($user['role_id']) {
                     case 1:
-                        header('Location: /candidate/dashboard');
+                        header('Location: /S5-B1-MVC/public/candidate/dashboard');
                         break;
                     case 2:
-                        header('Location: /recruiter/dashboard');
+                        header('Location: /S5-B1-MVC/public/recruiter/dashboard');
                         break;
                     case 3:
-                        header('Location: /admin/dashboard');
+                        header('Location: /S5-B1-MVC/public/admin/dashboard');
                         break;
                 }
                 exit;
             }
         }
 
-        require __DIR__ . '/../../Views/auth/login.php';
+        require __DIR__ . '/../Views/auth/login.php';
     }
 
 
@@ -77,7 +80,7 @@ class AuthController
         session_start();
         session_destroy();
 
-        header('Location: /login');
+        header('Location: /S5-B1-MVC/public/login');
         exit;
     }
 }

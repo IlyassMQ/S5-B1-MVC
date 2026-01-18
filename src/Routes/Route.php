@@ -1,6 +1,5 @@
 <?php
-namespace App\core;
-
+namespace App\Routes;
 class Route {
 
     private $routes =[];
@@ -26,25 +25,29 @@ class Route {
     }
     public function dispatch()
     {
-        $path = strtok($_SERVER['REQUEST_URI'], "?");
-        $method = $_SERVER['REQUEST_METHOD'];
         
-        
-        $path = str_replace("/S5-B1-MVC", "", $path);
-        if ($path === ''){
-                $path = '/';
-        }
-     
-        if (array_key_exists($path, $this->routes[$method])) {
-            $controller = $this->routes[$method][$path]['controller'];
-            $action = $this->routes[$method][$path]['action'];
-            $controller = new $controller();
-            $controller->$action();
-            exit;
-        } else {
-            require __DIR__ . '/../../Views/errors/404.php';
-        }
+    $path = strtok($_SERVER['REQUEST_URI'], '?');
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    $path = str_replace('/S5-B1-MVC/public', '', $path);
+
+    if ($path === '') {
+        $path = '/';
     }
+
+    if (isset($this->routes[$method][$path])) {
+        $controllerClass = $this->routes[$method][$path]['controller'];
+        $action = $this->routes[$method][$path]['action'];
+
+        $controller = new $controllerClass();
+        $controller->$action();
+        exit;
+    }
+
+    require VIEW_PATH . '/errors/404.php';
+    
+    }
+
 
 
 

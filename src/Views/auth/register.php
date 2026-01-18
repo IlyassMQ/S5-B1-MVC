@@ -7,7 +7,7 @@
 </head>
 <body>
     
-    <form method="POST" action="/register">
+    <form method="POST" action="/S5-B1-MVC/public/register">
         <input type="text" name="name" placeholder="Full Name" required />
         <input type="email" name="email" placeholder="Email" required />
         <input type="password" name="password" placeholder="Password" required />
