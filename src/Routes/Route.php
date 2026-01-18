@@ -42,7 +42,7 @@ class Route {
             $controller->$action();
             exit;
         } else {
-            require_once '/../Views/errors/404.php';
+            require __DIR__ . '/../../Views/errors/404.php';
         }
     }
 
