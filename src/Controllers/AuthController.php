@@ -27,7 +27,7 @@ class AuthController
                 $error = "Registration failed. Please try again.";
             }
         }
-        require __DIR__ . '/../../views/auth/register.php';
+        require __DIR__ . '/../../Views/auth/register.php';
     }
 
 
@@ -52,13 +52,22 @@ class AuthController
                     'email' => $user['email'],
                     'role' => $user['role_id']
                 ];
-
-                header('Location: /dashboard');
+                switch ($user['role_id']) {
+                    case 1:
+                        header('Location: /candidate/dashboard');
+                        break;
+                    case 2:
+                        header('Location: /recruiter/dashboard');
+                        break;
+                    case 3:
+                        header('Location: /admin/dashboard');
+                        break;
+                }
                 exit;
             }
         }
 
-        require __DIR__ . '/../../views/auth/login.php';
+        require __DIR__ . '/../../Views/auth/login.php';
     }
 
 
